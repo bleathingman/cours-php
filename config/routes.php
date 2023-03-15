@@ -5,7 +5,6 @@ const AVAILABLE_ROUTES = [
     'connexion'=>'ConnexionController',
     'inscription'=>'RegisterController',
     'admin'=>'AdminController',
-    'updateProduct'=>'UpdateController',
     'Shop'=>'ShopController',
 ];
 

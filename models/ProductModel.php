@@ -40,4 +40,35 @@ class ProductModel
             echo "<div class='alert alert-danger' role='alert'>Impossible d'ajouter le produit</div>"; // Affiche un message d'erreur si l'insertion a échoué
         }
     }
+
+    public function deleteProduct($id)
+    {
+        $db = new DBConnection();
+        $conn = $db->connect();
+        $query = "DELETE FROM products WHERE id = :id"; // Prépare la requête SQL pour supprimer un produit de la table products en utilisant son id
+        $stmt = $conn->prepare($query); // Prépare la requête
+        $stmt->bindParam(':id', $id); // Lie l'id du produit au paramètre :id dans la requête
+        if ($stmt->execute()) { // Exécute la requête
+            echo '<div class="alert alert-success" role="alert">Produit supprimé avec succès!</div>'; // Affiche un message de succès si la suppression s'est bien déroulée
+        } else {
+            echo "<div class='alert alert-danger' role='alert'>Impossible de supprimer le produit</div>"; // Affiche un message d'erreur si la suppression a échoué
+        }
+    }
+
+    public function updateProduct($id)
+    {
+        $db = new DBConnection();
+        $conn = $db->connect();
+        $query = "UPDATE products SET name = :name, description = :description, price = :price WHERE id = :id"; // Prépare la requête SQL pour mettre à jour un produit dans la table products en utilisant son id
+        $stmt = $conn->prepare($query); // Prépare la requête
+        $stmt->bindParam(':name', $this->name); // Lie le nouveau nom du produit au paramètre :name dans la requête
+        $stmt->bindParam(':description', $this->description); // Lie la nouvelle description du produit au paramètre :description dans la requête
+        $stmt->bindParam(':price', $this->price); // Lie le nouveau prix du produit au paramètre :price dans la requête
+        $stmt->bindParam(':id', $id); // Lie l'id du produit au paramètre :id dans la requête
+        if ($stmt->execute()) { // Exécute la requête
+            echo '<div class="alert alert-success" role="alert">Produit mis à jour avec succès!</div>'; // Affiche un message de succès si la mise à jour s'est bien déroulée
+        } else {
+            echo "<div class='alert alert-danger' role='alert'>Impossible de mettre à jour le produit</div>"; // Affiche un message d'erreur si la mise à jour a échoué
+        }
+    }
 }

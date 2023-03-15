@@ -76,7 +76,7 @@ class UpdateManageModel
 
 
             // préparation de la requête d'insertion de l'utilisateur dans la bdd 
-            $updateQuery = "UPDATE productss SET name=:name, price=:price, description=:description, quantity=:quantity, marque_id=:marque_id WHERE id = :id";
+            $updateQuery = "UPDATE products SET name=:name, price=:price, description=:description, quantity=:quantity, marque_id=:marque_id WHERE id = :id";
             $update = $conn->prepare($updateQuery);
 
             // configuration des params 
