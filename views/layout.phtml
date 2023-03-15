@@ -10,11 +10,13 @@
     <title>Document</title>
 </head>
 
-<body>    
-    <?php if(isset($_SESSION['user'])){ require 'templates/header.php';} ?>
+<body>
+    <?php if (isset($_SESSION['user'])) {
+        require 'templates/header.php';
+    } ?>
     <div class="container-fluid py-5">
-        <div class="row">        
-            <main class="col-lg-12 px-4">
+        <div class="row">
+            <main class="col-lg-12">
                 <!-- Le router va renvoyer indirectement la bonne vue avec les bonne datas en fonction de la requête get -->
                 <?php $router = new router() ?>
             </main>

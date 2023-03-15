@@ -3,9 +3,9 @@ class DBConnection
 {
     // préparation des attributs avec les infos de la bdd
     private $host = 'localhost';
-    private $dbname = 'bddname';
+    private $dbname = 'coursphp';
     private $username = 'root';
-    private $password = 'root';
+    private $password = '';
     public $conn;
 
     public function connect()

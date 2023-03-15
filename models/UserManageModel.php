@@ -31,9 +31,9 @@ class UserManageModel
                 $this->connectUser(); // on apelle la méthode connectUser                
                 if ($this->connectUser()) { // si connectUser renvoie true
                     session_start(); // on lance un session_start
-                    $_SESSION['user'] = $this->mail;  // on crée la session user avec l'email                    
+                    $_SESSION['user'] = $this->mail;  // on crée la session user avec l'email
+                    header('Location: ' . $_SERVER['SCRIPT_NAME'] . '?page=admin'); // on redirige vers l'interface d'admin
                     echo '<div class="alert alert-success" role="alert">utilisateur connecté</div>';
-                    header('Location: ' . $_SERVER['SCRIPT_NAME'] . '?page=admin'); // on redirige vers l'interface d'admin                    
                 } else {
                     echo '<div class="alert alert-danger" role="alert">utilisateur introuvable</div>';
                 }
@@ -56,7 +56,7 @@ class UserManageModel
         $stmt->bindParam(':email', $this->mail);
         $stmt->bindParam(':username', $this->nickname);
         $stmt->bindParam(':password', $hashed_password);
-        if ($stmt->execute()) {// on execute dans le if. TRUE on success or FALSE on failure
+        if ($stmt->execute()) { // on execute dans le if. TRUE on success or FALSE on failure
             echo '<div class="alert alert-success" role="alert">inscription réussie, vous pouvez vous connecter</div>';
         } else {
             echo "<div class='alert alert-danger' role='alert'>l'inscription à échouée</div>";
@@ -65,7 +65,7 @@ class UserManageModel
 
     public function connectUser()
     {
-        $db = new DBConnection();// connexion bdd
+        $db = new DBConnection(); // connexion bdd
         $conn = $db->connect();
         // préparation de la requête
         $query = "SELECT * FROM users WHERE email = :email";
@@ -78,7 +78,7 @@ class UserManageModel
         if (!$user) { // si y'a pas de data on retourne false
             return false;
         }
-        if (password_verify($this->pwd, $user['password'])) {// on utilise la fonction php password_verify pour checker le mdp côté form + bdd
+        if (password_verify($this->pwd, $user['password'])) { // on utilise la fonction php password_verify pour checker le mdp côté form + bdd
             return true;
         } else {
             return false;

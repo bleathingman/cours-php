@@ -4,7 +4,9 @@
 const AVAILABLE_ROUTES = [
     'connexion'=>'ConnexionController',
     'inscription'=>'RegisterController',
-    'admin'=>'AdminController',               
+    'admin'=>'AdminController',
+    'updateProduct'=>'UpdateController',
+    'Shop'=>'ShopController',
 ];
 
 const DEFAULT_ROUTE = 'ConnexionController';
